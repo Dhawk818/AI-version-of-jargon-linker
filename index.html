@@ -1,1 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jargon Linker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Dropdown Menu -->
+    <div class="dropdown">
+      <select id="menu" onchange="switchTab()">
+        <option value="addWord">Add Word</option>
+        <option value="definitions">Definitions</option>
+      </select>
+    </div>
+
+    <!-- Add Word Tab -->
+    <div id="addWordTab" class="tab">
+      <input type="text" id="wordInput" placeholder="Add Word" />
+      <input type="text" id="definitionInput" placeholder="Add Definition" />
+      <button onclick="submitWord()">Submit</button>
+    </div>
+
+    <!-- Definitions Tab -->
+    <div id="definitionsTab" class="tab" style="display: none;">
+      <input type="text" id="searchInput" placeholder="Search for a word..." onkeyup="filterWords()">
+      <ul id="wordList"></ul>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
 
