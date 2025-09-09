@@ -19,21 +19,24 @@ function switchTab() {
 
 // Function to submit the word and definition
 function submitWord() {
-  const wordInput = document.getElementById("wordInput").value.trim();
-  const definitionInput = document.getElementById("definitionInput").value.trim();
+  const wordInput = document.getElementById("wordInput");
+  const definitionInput = document.getElementById("definitionInput");
 
-  if (wordInput && definitionInput) {
+  const word = wordInput.value.trim();
+  const definition = definitionInput.value.trim();
+
+  if (word && definition) {
     // Add the new word-definition pair
-    wordDefinitions.push({ word: wordInput, definition: definitionInput });
+    wordDefinitions.push({ word, definition });
 
     // Save to localStorage
     localStorage.setItem("wordDefinitions", JSON.stringify(wordDefinitions));
 
-    alert("Word added successfully!");
-
     // Clear input fields
-    document.getElementById("wordInput").value = "";
-    document.getElementById("definitionInput").value = "";
+    wordInput.value = "";
+    definitionInput.value = "";
+
+    alert("Word added successfully!");
 
     // Switch to the Definitions tab
     document.getElementById("menu").value = "definitions";
@@ -88,9 +91,18 @@ function editWord(index) {
   const newDefinition = prompt("Edit definition:", wordDefinitions[index].definition);
 
   if (newWord && newDefinition) {
-    wordDefinitions[index] = { word: newWord, definition: newDefinition };
+    // Update word and definition
+    wordDefinitions[index] = { word: newWord.trim(), definition: newDefinition.trim() };
+
+    // Save to localStorage
     localStorage.setItem("wordDefinitions", JSON.stringify(wordDefinitions));
+
+    // Clear input fields on Add Word tab
+    document.getElementById("wordInput").value = "";
+    document.getElementById("definitionInput").value = "";
+
     renderWordList(wordDefinitions);
+    alert("Word updated successfully!");
   }
 }
 
