@@ -1,4 +1,4 @@
-// Data structure to store word-definition pairs
+// Load saved words from localStorage or initialize an empty array
 let wordDefinitions = JSON.parse(localStorage.getItem("wordDefinitions")) || [];
 
 // Function to switch between tabs
@@ -17,26 +17,19 @@ function switchTab() {
   }
 }
 
-// Function to submit or update a word and definition
+// Function to submit the word and definition
 function submitWord() {
   const wordInput = document.getElementById("wordInput").value.trim();
   const definitionInput = document.getElementById("definitionInput").value.trim();
-  const editIndex = document.getElementById("editIndex").value;
 
   if (wordInput && definitionInput) {
-    if (editIndex !== "") {
-      // Update existing word
-      wordDefinitions[editIndex] = { word: wordInput, definition: definitionInput };
-      alert("Word updated successfully!");
-      document.getElementById("editIndex").value = "";
-    } else {
-      // Add new word
-      wordDefinitions.push({ word: wordInput, definition: definitionInput });
-      alert("Word added successfully!");
-    }
+    // Add the new word-definition pair
+    wordDefinitions.push({ word: wordInput, definition: definitionInput });
 
     // Save to localStorage
     localStorage.setItem("wordDefinitions", JSON.stringify(wordDefinitions));
+
+    alert("Word added successfully!");
 
     // Clear input fields
     document.getElementById("wordInput").value = "";
@@ -54,54 +47,59 @@ function submitWord() {
 function renderWordList(words) {
   const wordList = document.getElementById("wordList");
   wordList.innerHTML = ""; // Clear the existing list
-  
+
   words.forEach(({ word, definition }, index) => {
     const li = document.createElement("li");
 
-    const text = document.createElement("span");
-    text.textContent = `${word}: ${definition} `;
+    const span = document.createElement("span");
+    span.textContent = `${word}: ${definition}`;
+    li.appendChild(span);
 
+    // Edit button
     const editBtn = document.createElement("button");
-    editBtn.textContent = "✏️ Edit";
+    editBtn.textContent = "Edit";
     editBtn.classList.add("edit-btn");
     editBtn.onclick = () => editWord(index);
+    li.appendChild(editBtn);
 
+    // Delete button
     const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "❌ Delete";
+    deleteBtn.textContent = "Delete";
     deleteBtn.classList.add("delete-btn");
     deleteBtn.onclick = () => deleteWord(index);
-
-    li.appendChild(text);
-    li.appendChild(editBtn);
     li.appendChild(deleteBtn);
+
     wordList.appendChild(li);
   });
-}
-
-// Function to edit a word
-function editWord(index) {
-  const { word, definition } = wordDefinitions[index];
-  document.getElementById("wordInput").value = word;
-  document.getElementById("definitionInput").value = definition;
-  document.getElementById("editIndex").value = index;
-
-  document.getElementById("menu").value = "addWord";
-  switchTab();
 }
 
 // Function to delete a word
 function deleteWord(index) {
   if (confirm("Are you sure you want to delete this word?")) {
-    wordDefinitions.splice(index, 1); // remove word
-    localStorage.setItem("wordDefinitions", JSON.stringify(wordDefinitions)); // update storage
-    renderWordList(wordDefinitions); // re-render
+    wordDefinitions.splice(index, 1);
+    localStorage.setItem("wordDefinitions", JSON.stringify(wordDefinitions));
+    renderWordList(wordDefinitions);
+  }
+}
+
+// Function to edit a word
+function editWord(index) {
+  const newWord = prompt("Edit word:", wordDefinitions[index].word);
+  const newDefinition = prompt("Edit definition:", wordDefinitions[index].definition);
+
+  if (newWord && newDefinition) {
+    wordDefinitions[index] = { word: newWord, definition: newDefinition };
+    localStorage.setItem("wordDefinitions", JSON.stringify(wordDefinitions));
+    renderWordList(wordDefinitions);
   }
 }
 
 // Function to filter words based on input
 function filterWords() {
   const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-  const filteredWords = wordDefinitions.filter(({ word }) => word.toLowerCase().includes(searchTerm));
+  const filteredWords = wordDefinitions.filter(({ word }) =>
+    word.toLowerCase().includes(searchTerm)
+  );
   renderWordList(filteredWords);
 }
 
