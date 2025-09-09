@@ -8,6 +8,10 @@
 </head>
 <body>
   <div id="app">
+
+    <!-- Page Title -->
+    <h1 id="title">Jargon Linker</h1>
+
     <!-- Dropdown Menu -->
     <div class="dropdown">
       <select id="menu" onchange="switchTab()">
@@ -16,9 +20,8 @@
       </select>
     </div>
 
-    <!-- Add/Edit Word Tab -->
+    <!-- Add Word Tab -->
     <div id="addWordTab" class="tab">
-      <input type="hidden" id="editIndex" value="">
       <input type="text" id="wordInput" placeholder="Add Word" />
       <input type="text" id="definitionInput" placeholder="Add Definition" />
       <button onclick="submitWord()">Submit</button>
