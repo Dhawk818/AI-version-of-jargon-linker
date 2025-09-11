@@ -1,183 +1,83 @@
-/* General page styling */
+/* General styles */
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, sans-serif;
+  background-color: #007BFF; /* Blue background */
+  color: black; /* Black text */
   margin: 0;
   padding: 0;
-  background: #1e90ff; /* Blue background */
-  color: black; /* Black text */
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
   text-align: center;
-}
-
-/* App container */
-#app {
-  width: 95%;
-  max-width: 700px;
-  margin: 40px auto;
-  padding: 25px;
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-  animation: fadeIn 0.6s ease-in-out;
-  color: black;
 }
 
 /* Title styling */
-#title {
+.title {
   font-size: 18px;
-  font-weight: bold;
-  font-style: italic;
-  margin-bottom: 20px;
-  text-align: center;
+  margin: 20px 0;
 }
 
 /* Dropdown menu */
-.dropdown select {
-  width: 60%;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 25px;
-  border: 1px solid #ddd;
-  background: #f8f8f8;
-  cursor: pointer;
-  transition: 0.2s;
-  margin: 0 auto;
-  display: block;
-  color: black;
+.dropdown {
+  margin: 20px auto;
 }
 
-.dropdown select:hover {
-  border-color: #0077ff;
-}
-
-/* Tab section */
+/* Tabs */
 .tab {
-  margin-top: 20px;
+  margin: 20px auto;
+  max-width: 500px;
 }
 
 /* Input fields */
 input[type="text"] {
   display: block;
+  margin: 10px auto;
+  padding: 10px;
   width: 80%;
-  margin: 12px auto;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  font-size: 15px;
-  background: #fdfdfd;
-  transition: border 0.2s;
-  color: black;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-input[type="text"]:focus {
-  border-color: #0077ff;
-  outline: none;
-}
-
-/* Primary buttons */
+/* Buttons */
 button {
   padding: 10px 20px;
-  border: none;
-  border-radius: 25px; /* Rounded */
-  background: #0077ff;
+  margin-top: 10px;
+  background-color: white;
   color: black;
-  font-size: 14px;
+  border: 1px solid #333;
+  border-radius: 25px; /* Rounded */
   cursor: pointer;
-  transition: background 0.25s, transform 0.1s;
+  font-weight: bold;
 }
-
 button:hover {
-  background: #005bb5;
+  background-color: #f0f0f0;
 }
 
-button:active {
-  transform: scale(0.97);
+/* Word list */
+#wordList {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+  margin: 20px auto;
+  max-width: 600px;
+}
+#wordList li {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+#wordList li button {
+  margin-left: 10px;
 }
 
 /* Sorting options */
 .sort-options {
   margin: 10px auto 20px auto;
-  text-align: center;
 }
-
 .sort-options label {
   font-weight: bold;
   margin-right: 10px;
 }
-
 .sort-options select {
   padding: 8px 12px;
   border-radius: 25px;
   border: 1px solid #ddd;
   font-size: 14px;
   cursor: pointer;
-}
-
-/* Word list styling */
-#wordList {
-  list-style-type: none;
-  padding: 0;
-  margin-top: 20px;
-  text-align: left; /* Definitions left aligned */
-}
-
-#wordList li {
-  background: #f9f9ff;
-  margin: 10px 0;
-  padding: 15px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
-  color: black;
-}
-
-#wordList li:hover {
-  transform: translateX(5px);
-}
-
-/* Word text */
-#wordList li span {
-  flex: 1;
-  font-size: 16px;
-  font-weight: 500;
-  color: black;
-}
-
-/* Buttons inside word items */
-#wordList li button {
-  margin-left: 8px;
-  font-size: 13px;
-  padding: 6px 10px;
-  border-radius: 25px;
-  cursor: pointer;
-}
-
-#wordList li .delete-btn {
-  background: #ff4d4d;
-  color: black;
-}
-
-#wordList li .delete-btn:hover {
-  background: #d93636;
-}
-
-#wordList li .edit-btn {
-  background: #ffa500;
-  color: black;
-}
-
-#wordList li .edit-btn:hover {
-  background: #cc8400;
-}
-
-/* Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
 }
