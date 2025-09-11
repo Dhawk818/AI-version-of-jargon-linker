@@ -97,6 +97,25 @@ button:active {
   transform: scale(0.97);
 }
 
+/* Sorting options */
+.sort-options {
+  margin: 10px auto 20px auto;
+  text-align: center;
+}
+
+.sort-options label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.sort-options select {
+  padding: 8px 12px;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  cursor: pointer;
+}
+
 /* Word list styling */
 #wordList {
   list-style-type: none;
