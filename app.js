@@ -1,5 +1,6 @@
 // Load saved words from localStorage or initialize an empty array
 let wordDefinitions = JSON.parse(localStorage.getItem("wordDefinitions")) || [];
+let currentSort = "alphabetical"; // default sort
 
 // Function to switch between tabs
 function switchTab() {
@@ -26,8 +27,8 @@ function submitWord() {
   const definition = definitionInput.value.trim();
 
   if (word && definition) {
-    // Add the new word-definition pair
-    wordDefinitions.push({ word, definition });
+    // Add the new word-definition pair with timestamp
+    wordDefinitions.push({ word, definition, timestamp: Date.now() });
 
     // Save to localStorage
     localStorage.setItem("wordDefinitions", JSON.stringify(wordDefinitions));
@@ -51,7 +52,15 @@ function renderWordList(words) {
   const wordList = document.getElementById("wordList");
   wordList.innerHTML = ""; // Clear the existing list
 
-  words.forEach(({ word, definition }, index) => {
+  // Apply sorting
+  let sortedWords = [...words];
+  if (currentSort === "alphabetical") {
+    sortedWords.sort((a, b) => a.word.localeCompare(b.word));
+  } else if (currentSort === "recent") {
+    sortedWords.sort((a, b) => b.timestamp - a.timestamp);
+  }
+
+  sortedWords.forEach(({ word, definition }, index) => {
     const li = document.createElement("li");
 
     const span = document.createElement("span");
@@ -76,6 +85,12 @@ function renderWordList(words) {
   });
 }
 
+// Function to handle sorting
+function sortWords() {
+  currentSort = document.getElementById("sortSelect").value;
+  renderWordList(wordDefinitions);
+}
+
 // Function to delete a word
 function deleteWord(index) {
   if (confirm("Are you sure you want to delete this word?")) {
@@ -92,7 +107,11 @@ function editWord(index) {
 
   if (newWord && newDefinition) {
     // Update word and definition
-    wordDefinitions[index] = { word: newWord.trim(), definition: newDefinition.trim() };
+    wordDefinitions[index] = { 
+      word: newWord.trim(), 
+      definition: newDefinition.trim(), 
+      timestamp: Date.now() 
+    };
 
     // Save to localStorage
     localStorage.setItem("wordDefinitions", JSON.stringify(wordDefinitions));
