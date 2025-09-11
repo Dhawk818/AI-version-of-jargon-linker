@@ -14,7 +14,7 @@ function switchTab() {
   } else {
     addWordTab.style.display = "none";
     definitionsTab.style.display = "block";
-    renderWordList(wordDefinitions);
+    sortWords(); // ✅ ensure correct sort when switching tabs
   }
 }
 
@@ -96,7 +96,7 @@ function deleteWord(index) {
   if (confirm("Are you sure you want to delete this word?")) {
     wordDefinitions.splice(index, 1);
     localStorage.setItem("wordDefinitions", JSON.stringify(wordDefinitions));
-    renderWordList(wordDefinitions);
+    sortWords(); // ✅ reapply sorting after deletion
   }
 }
 
@@ -120,7 +120,7 @@ function editWord(index) {
     document.getElementById("wordInput").value = "";
     document.getElementById("definitionInput").value = "";
 
-    renderWordList(wordDefinitions);
+    sortWords(); // ✅ reapply sorting after edit
     alert("Word updated successfully!");
   }
 }
