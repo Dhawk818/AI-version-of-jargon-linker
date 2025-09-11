@@ -128,11 +128,36 @@ function editWord(index) {
 // Function to filter words based on input
 function filterWords() {
   const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-  const filteredWords = wordDefinitions.filter(({ word }) =>
+
+  // Filter by search term
+  let filteredWords = wordDefinitions.filter(({ word }) =>
     word.toLowerCase().includes(searchTerm)
   );
+
+  // ✅ Apply current sort to the filtered list
+  if (currentSort === "alphabetical") {
+    filteredWords.sort((a, b) => a.word.localeCompare(b.word));
+  } else if (currentSort === "recent") {
+    filteredWords.sort((a, b) => b.timestamp - a.timestamp);
+  }
+
   renderWordList(filteredWords);
 }
+
+// ✅ Function to clear search and reset list
+function clearSearch() {
+  document.getElementById("searchInput").value = "";
+  sortWords(); // re-render the full list based on current sort
+}
+
+// ✅ Add ESC key support to clear search
+document.addEventListener("keydown", (event) => {
+  const searchBox = document.getElementById("searchInput");
+  if (event.key === "Escape" && document.activeElement === searchBox) {
+    clearSearch();
+    searchBox.blur(); // optional: removes focus so user sees reset
+  }
+});
 
 // Initialize with the Add Word tab
 window.onload = () => {
