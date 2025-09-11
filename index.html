@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jargon Linker</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jargon Linker v1.0</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div id="app">
     <!-- Title -->
-    <h1 class="title"><em><strong>Jargon Linker</strong></em></h1>
+    <h1 class="title">
+      <em><strong>Jargon Linker</strong></em>
+      <span id="versionLabel" style="font-size:12px; margin-left:8px;">v1.0</span>
+    </h1>
 
     <!-- Dropdown Menu -->
     <div class="dropdown">
@@ -29,12 +32,12 @@
     <!-- Definitions Tab -->
     <div id="definitionsTab" class="tab" style="display: none;">
       <div class="search-bar">
-        <input 
-          type="text" 
-          id="searchInput" 
-          placeholder="Search for a word..." 
-          onkeyup="filterWords()" 
-        >
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search for a word..."
+          onkeyup="filterWords()"
+        />
         <button class="clear-btn" onclick="clearSearch()">✕</button>
       </div>
 
