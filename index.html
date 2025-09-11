@@ -28,7 +28,15 @@
 
     <!-- Definitions Tab -->
     <div id="definitionsTab" class="tab" style="display: none;">
-      <input type="text" id="searchInput" placeholder="Search for a word..." onkeyup="filterWords()">
+      <div class="search-bar">
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Search for a word..." 
+          onkeyup="filterWords()" 
+        >
+        <button class="clear-btn" onclick="clearSearch()">✕</button>
+      </div>
 
       <!-- Sorting Selector -->
       <div class="sort-options">
