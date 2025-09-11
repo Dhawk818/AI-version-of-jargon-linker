@@ -1,3 +1,13 @@
+// Checkpoint 1 JS - Jargon Linker
+const APP_VERSION = "v1.0";
+
+// Set document title and visible version label
+document.title = `Jargon Linker ${APP_VERSION}`;
+window.addEventListener("DOMContentLoaded", () => {
+  const versionLabel = document.getElementById("versionLabel");
+  if (versionLabel) versionLabel.textContent = APP_VERSION;
+});
+
 // Load saved words from localStorage or initialize an empty array
 let wordDefinitions = JSON.parse(localStorage.getItem("wordDefinitions")) || [];
 let currentSort = "alphabetical"; // default sort
@@ -14,7 +24,7 @@ function switchTab() {
   } else {
     addWordTab.style.display = "none";
     definitionsTab.style.display = "block";
-    sortWords(); // ✅ ensure correct sort when switching tabs
+    sortWords(); // ensure correct sort when switching tabs
   }
 }
 
@@ -96,7 +106,7 @@ function deleteWord(index) {
   if (confirm("Are you sure you want to delete this word?")) {
     wordDefinitions.splice(index, 1);
     localStorage.setItem("wordDefinitions", JSON.stringify(wordDefinitions));
-    sortWords(); // ✅ reapply sorting after deletion
+    sortWords(); // reapply sorting after deletion
   }
 }
 
@@ -107,10 +117,10 @@ function editWord(index) {
 
   if (newWord && newDefinition) {
     // Update word and definition
-    wordDefinitions[index] = { 
-      word: newWord.trim(), 
-      definition: newDefinition.trim(), 
-      timestamp: Date.now() 
+    wordDefinitions[index] = {
+      word: newWord.trim(),
+      definition: newDefinition.trim(),
+      timestamp: Date.now()
     };
 
     // Save to localStorage
@@ -120,7 +130,7 @@ function editWord(index) {
     document.getElementById("wordInput").value = "";
     document.getElementById("definitionInput").value = "";
 
-    sortWords(); // ✅ reapply sorting after edit
+    sortWords(); // reapply sorting after edit
     alert("Word updated successfully!");
   }
 }
@@ -134,7 +144,7 @@ function filterWords() {
     word.toLowerCase().includes(searchTerm)
   );
 
-  // ✅ Apply current sort to the filtered list
+  // Apply current sort to the filtered list
   if (currentSort === "alphabetical") {
     filteredWords.sort((a, b) => a.word.localeCompare(b.word));
   } else if (currentSort === "recent") {
@@ -144,13 +154,13 @@ function filterWords() {
   renderWordList(filteredWords);
 }
 
-// ✅ Function to clear search and reset list
+// Function to clear search and reset list
 function clearSearch() {
   document.getElementById("searchInput").value = "";
   sortWords(); // re-render the full list based on current sort
 }
 
-// ✅ Add ESC key support to clear search
+// Add ESC key support to clear search
 document.addEventListener("keydown", (event) => {
   const searchBox = document.getElementById("searchInput");
   if (event.key === "Escape" && document.activeElement === searchBox) {
