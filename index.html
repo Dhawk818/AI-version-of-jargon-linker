@@ -30,6 +30,16 @@
     <!-- Definitions Tab -->
     <div id="definitionsTab" class="tab" style="display: none;">
       <input type="text" id="searchInput" placeholder="Search for a word..." onkeyup="filterWords()">
+
+      <!-- New Sorting Selector -->
+      <div class="sort-options">
+        <label for="sortSelect">Sort by:</label>
+        <select id="sortSelect" onchange="sortWords()">
+          <option value="alphabetical">Alphabetical</option>
+          <option value="recent">Recent</option>
+        </select>
+      </div>
+
       <ul id="wordList"></ul>
     </div>
   </div>
