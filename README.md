@@ -2,7 +2,7 @@
 
 Project Overview and Purpose
 
-Jargon Linker is a single-page application (SPA) built to help users keep track of custom terms and their definitions. The purpose of the app is to provide a simple, personal glossary tool where users can quickly store, organize, and reference the jargon they come across.
+Jargon Linker is a single-page application (SPA) built to help users keep track of custom terms and their definitions. The purpose of the app is to provide a simple, personal and global glossary tool where users can quickly store, organize, and reference the jargon they come across.
 
 Features and Functionality
 
