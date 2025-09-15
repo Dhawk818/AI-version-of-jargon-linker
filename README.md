@@ -8,7 +8,7 @@ Jargon Linker is a single-page application (SPA) built to help users keep track 
 
 Add, edit, and delete custom jargon terms with definitions
 
-Entries saved permanently in browser using localStorage
+Entries saved permanently in browser using local Storage
 
 Sorting options: alphabetical or most recent
 
